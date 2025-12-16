@@ -1,16 +1,19 @@
 #include <iostream>
+#include <cstdlib>  // for atoi
+
 using namespace std;
 
-int main() {
-    int a, b, sum;
+int main(int argc, char* argv[]) {
+    // Check if two arguments are provided
+    if (argc != 3) {
+        cout << "Usage: " << argv[0] << " <num1> <num2>" << endl;
+        return 1;
+    }
 
-    cout << "Enter first number: ";
-    cin >> a;
+    int a = atoi(argv[1]);
+    int b = atoi(argv[2]);
 
-    cout << "Enter second number: ";
-    cin >> b;
-
-    sum = a + b;
+    int sum = a + b;
 
     cout << "Sum = " << sum << endl;
 
