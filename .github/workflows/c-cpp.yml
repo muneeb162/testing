@@ -1,0 +1,42 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+     first_number:
+        description: " First number "
+        required: true
+     second_number:
+        description: " Second number "
+        required: true
+      
+        
+    
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your workflow can access it
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      # Install GCC (GNU Compiler Collection) and make
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Compling Code
+        run: g++ sum.cpp -o sum 
+
+      - name: Excute Artificate
+        run: chmod +x sum; ./sum ${{ inputs.first_number }} ${{ inputs.second_number }} >> sum.txt; cat sum.txt
+
+        
+      
+      
